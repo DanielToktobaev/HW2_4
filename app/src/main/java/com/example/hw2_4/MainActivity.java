@@ -4,13 +4,16 @@ package com.example.hw2_4;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     EditText emailInput;
     EditText passwordInput;
     AppCompatButton button;
+    TextView txt;
+    TextView txt2;
+
+    TextView text1;
+    TextView text2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
         emailInput = findViewById(R.id.mail);
         button = findViewById(R.id.button);
+        txt = findViewById(R.id.txt);
+        txt2 = findViewById(R.id.txt2);
+        text1 = findViewById(R.id.text1);
+        text2 = findViewById(R.id.text2);
 
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -56,9 +68,16 @@ public class MainActivity extends AppCompatActivity {
             String email = emailInput.getText().toString();
             String password = passwordInput.getText().toString();
             if (email.equals("admin") && password.equals("admin")) {
-                Toast.makeText(MainActivity.this, "Вы успешно вошли", Toast.LENGTH_SHORT).show();
+                emailInput.setVisibility(View.INVISIBLE);
+                passwordInput.setVisibility(View.INVISIBLE);
+                button.setVisibility(View.INVISIBLE);
+                txt.setVisibility(View.INVISIBLE);
+                txt2.setVisibility(View.INVISIBLE);
+                text1.setVisibility(View.INVISIBLE);
+                text2.setVisibility(View.INVISIBLE);
+                Snackbar.make(v, "Вход выполнен", Snackbar.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(MainActivity.this, "Неправильный логин и пароль", Toast.LENGTH_SHORT).show();
+                Snackbar.make(v, "Неверный логин или пароль", Snackbar.LENGTH_SHORT).show();
 
             }
         });
